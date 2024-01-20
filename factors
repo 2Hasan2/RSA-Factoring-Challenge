@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 import sys
-import time
-
 def factorize_number(n):
     for i in range(2, n // 2 + 1):
         if n % i == 0:
@@ -9,7 +7,6 @@ def factorize_number(n):
     return None
 
 def factorize_file(file_path):
-    start_time = time.time()
 
     with open(file_path, 'r') as file:
         numbers = file.read().splitlines()
