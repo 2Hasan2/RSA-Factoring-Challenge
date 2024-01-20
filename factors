@@ -1,13 +1,16 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import sys
+import time
 
 def factorize_number(n):
-    for i in range(2, n//2 + 1):
+    for i in range(2, n // 2 + 1):
         if n % i == 0:
             return i, n // i
     return None
 
 def factorize_file(file_path):
+    start_time = time.time()
+
     with open(file_path, 'r') as file:
         numbers = file.read().splitlines()
 
@@ -15,7 +18,7 @@ def factorize_file(file_path):
         n = int(number)
         factors = factorize_number(n)
         if factors:
-            print(f"{n}={factors[0]}*{factors[1]}")
+            print(f"{n}={factors[1]}*{factors[0]}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -23,4 +26,8 @@ if __name__ == "__main__":
         sys.exit(1)
 
     file_path = sys.argv[1]
-    factorize_file(file_path)
+    try:
+        factorize_file(file_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
